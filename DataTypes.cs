@@ -1,6 +1,6 @@
 ﻿
 [System.Serializable]
-public struct MeanMedianVariance
+public struct MeanMedianVar
 {
     public float mean;
     public float median;

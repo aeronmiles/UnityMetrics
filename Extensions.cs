@@ -1,6 +1,6 @@
 ﻿using System;
 using Unity.Mathematics;
-
+using UnityEngine;
 
 public static class MetricExt
 {
@@ -61,9 +61,9 @@ public static class MetricExt
         return math.abs(max - min);
     }
 
-    public static MeanMedianVariance ToMeanMedianVariance(this float[] floats)
+    public static MeanMedianVar ToMeanMedianVar(this float[] floats)
     {
-        MeanMedianVariance mmv = new MeanMedianVariance();
+        MeanMedianVar mmv = new MeanMedianVar();
 
         mmv.mean = floats.Mean();
         mmv.median = floats.Median();
@@ -84,6 +84,17 @@ public static class MetricExt
         return average / l;
     }
 
+    public static Vector2 Mean(this Vector2[] vs)
+    {
+        Vector2 average = new Vector2();
+        int l = vs.Length;
+        for (int i = 0; i < l; i++)
+        {
+            average += vs[i];
+        }
+
+        return average / l;
+    }
     public static long Mean(this long[] vals)
     {
         long m = 0;
