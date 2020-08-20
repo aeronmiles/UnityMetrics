@@ -27,6 +27,29 @@ public static class MetricExt
         return m / l;
     }
 
+    public static float Min(this float[] floats)
+    {
+        float m = float.MaxValue;
+        int l = floats.Length;
+        for (int i = 0; i < l; i++)
+        {
+            m = math.min(floats[i], m);
+        }
+
+        return m;
+    }
+
+    public static float Max(this float[] floats)
+    {
+        float m = float.MinValue;
+        int l = floats.Length;
+        for (int i = 0; i < l; i++)
+        {
+            m = math.max(floats[i], m);
+        }
+
+        return m;
+    }
 
     public static float Median(this float[] floats)
     {
@@ -46,28 +69,41 @@ public static class MetricExt
         return median;
     }
 
+    public static float Squared(this float f) => math.sqrt(f);
+
     public static float Variance(this float[] floats)
     {
-        float min = float.MaxValue;
-        float max = float.MinValue;
-
-        int l = floats.Length;
-        for (int i = 0; i < l; i++)
+        if (floats.Length > 1)
         {
-            min = math.min(min, floats[i]);
-            max = math.max(max, floats[i]);
-        }
+            // Get the average of the values
+            float mean = floats.Mean();
 
-        return math.abs(max - min);
+            // Now figure out how far each point is from the mean
+            // So we subtract from the number the average
+            // Then raise it to the power of 2
+            float sumOfSquares = 0.0f;
+            foreach (float num in floats)
+            {
+                sumOfSquares += math.pow((num - mean), 2.0f);
+            }
+
+            // Finally divide it by n - 1 (for standard deviation variance)
+            // Or use length without subtracting one ( for population standard deviation variance)
+            return sumOfSquares / (float)(floats.Length);
+        }
+        else { return 0f; }
     }
 
-    public static MeanMedianVar ToMeanMedianVar(this float[] floats)
+
+    public static MeanMedianVarMinMax ToMeanMedianVarMinMax(this float[] floats)
     {
-        MeanMedianVar mmv = new MeanMedianVar();
+        MeanMedianVarMinMax mmv = new MeanMedianVarMinMax();
 
         mmv.mean = floats.Mean();
         mmv.median = floats.Median();
         mmv.variance = floats.Variance();
+        mmv.min = floats.Min();
+        mmv.max = floats.Max();
 
         return mmv;
     }
@@ -95,6 +131,7 @@ public static class MetricExt
 
         return average / l;
     }
+
     public static long Mean(this long[] vals)
     {
         long m = 0;
@@ -108,5 +145,6 @@ public static class MetricExt
     }
 
     public static float MmToMeters(this float f) => f / 1000f;
+    public static float MetersToMMs(this float f) => f * 1000f;
 
 }
