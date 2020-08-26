@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class MetricExt
 {
+
     public static float[] Errors(this float[] values, float referenceValue)
     {
         int l = values.Length;
