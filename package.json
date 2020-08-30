@@ -1,0 +1,15 @@
+{
+  "name": "com.am.unity.extensions",
+  "version": "0.1.0",
+  "displayName": "Unity Metrics",
+  "description": "Metric data types and extensions",
+  "unity": "2019.1",
+  "dependencies": {
+    "com.unity.mathematics": "1.1.0"
+ },
+ "keywords": [
+  ],
+  "author": {
+    "name": "Aeron Miles"
+  }
+}
