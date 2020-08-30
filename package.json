@@ -1,5 +1,5 @@
 {
-  "name": "com.am.unity.extensions",
+  "name": "com.am.unity.metrics",
   "version": "1.0.1",
   "displayName": "Unity Metrics",
   "description": "Metric data types and extensions",
