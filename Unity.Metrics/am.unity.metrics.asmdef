@@ -1,5 +1,5 @@
 {
-    "name": "UnityMetrics",
+    "name": "am.unity.metrics",
     "references": [
         "Unity.Mathematics"
     ],
