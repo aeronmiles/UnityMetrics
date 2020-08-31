@@ -76,20 +76,13 @@ public static class MetricExt
     {
         if (floats.Length > 1)
         {
-            // Get the average of the values
             float mean = floats.Mean();
-
-            // Now figure out how far each point is from the mean
-            // So we subtract from the number the average
-            // Then raise it to the power of 2
             float sumOfSquares = 0.0f;
             foreach (float num in floats)
             {
                 sumOfSquares += math.pow((num - mean), 2.0f);
             }
 
-            // Finally divide it by n - 1 (for standard deviation variance)
-            // Or use length without subtracting one ( for population standard deviation variance)
             return sumOfSquares / (float)(floats.Length);
         }
         else { return 0f; }
